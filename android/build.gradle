@@ -1,0 +1,16 @@
+allprojects {
+    repositories {
+        google()  // Required for Android tools
+        mavenCentral()  // Optional
+    }
+}
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
